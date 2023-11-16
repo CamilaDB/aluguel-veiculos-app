@@ -1,5 +1,32 @@
 # AluguelVeiculosApp
 
+Aplicação para administrar veículos e reservas.
+
+### Telas:
+- Listagem veículos
+  ![image](https://github.com/CamilaDB/aluguel-veiculos-app/assets/67481455/0849419b-f49d-4940-a9f9-e59146b522c3)
+
+  - Filtro veículos reservados:
+    ![image](https://github.com/CamilaDB/aluguel-veiculos-app/assets/67481455/7462136a-5bb8-467e-8731-6c65d347ab31)
+  
+  - Filtro veículos disponíveis:
+    ![image](https://github.com/CamilaDB/aluguel-veiculos-app/assets/67481455/65c50e6f-4083-4b1a-91f0-8874d2e07e32)
+
+- Modal adicionar veículo:
+  ![image](https://github.com/CamilaDB/aluguel-veiculos-app/assets/67481455/ccf84c0e-783a-4eca-80d1-085b83767ee8)
+
+  - Erro ao tentar criar veículo com campos inválidos:
+    ![image](https://github.com/CamilaDB/aluguel-veiculos-app/assets/67481455/672a62ce-7466-4b6d-bbe6-a89f2e30f5c5)
+
+- Modal alterar veículo:
+  ![image](https://github.com/CamilaDB/aluguel-veiculos-app/assets/67481455/8e3a9c91-74dd-4849-b531-eebebc305de3)
+  
+
+- Erro ao tentar excluir veículo reservado:
+  ![image](https://github.com/CamilaDB/aluguel-veiculos-app/assets/67481455/3d8ac406-bc6c-4e7f-bcf7-c7777c179e1c)
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
 ## Development server
