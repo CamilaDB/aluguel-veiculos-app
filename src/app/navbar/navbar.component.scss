@@ -1,0 +1,19 @@
+.navbar {
+  background-color: #dddddd;
+  padding: 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  color: #f8f9fa; /* Cor do texto dos links ao passar o mouse */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}

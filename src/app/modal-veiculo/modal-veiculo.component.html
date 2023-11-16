@@ -1,0 +1,49 @@
+<div class="modal" *ngIf="modalVeiculo">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-titulo">
+        {{ veiculo.id === null ? "Adicionar" : "Alterar" }} Veículo
+      </h3>
+      <button type="button" (click)="fecharModal()">X</button>
+    </div>
+
+    <div class="modal-form">
+      <label>Modelo: </label>
+      <input
+        type="text"
+        [(ngModel)]="veiculo.modelo"
+        placeholder="Informe o modelo"
+      />
+
+      <label>Marca: </label>
+      <input
+        type="text"
+        [(ngModel)]="veiculo.marca"
+        placeholder="Informe a marca"
+      />
+
+      <label>Cor: </label>
+      <input
+        type="text"
+        [(ngModel)]="veiculo.cor"
+        placeholder="Informe a cor"
+      />
+
+      <label>Ano de fabricação: </label>
+      <input
+        type="number"
+        [(ngModel)]="veiculo.anoDeFabricacao"
+        placeholder="Informe o ano de fabricação"
+      />
+
+      <label>Placa: </label>
+      <input
+        type="text"
+        [(ngModel)]="veiculo.placa"
+        placeholder="Informe a placa"
+      />
+
+      <button type="button" (click)="salvarVeiculo()">Salvar</button>
+    </div>
+  </div>
+</div>

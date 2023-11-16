@@ -1,0 +1,67 @@
+<app-carregando [carregando]="carregando" />
+<app-modal-veiculo
+  [modalVeiculo]="modalVeiculo"
+  [veiculo]="veiculo"
+  (fecharModalVeiculoEvent)="fecharModalVeiculo()"
+  (salvarVeiculoEvent)="salvarVeiculo($event)"
+  (alterarVeiculoEvent)="alterarVeiculo($event)"
+/>
+<h2>Lista de Veículos</h2>
+
+<button type="button" class="btn btn-alterar" (click)="mostrarModalVeiculo()">
+  Adicionar Veículo
+</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>Modelo</th>
+      <th>Marca</th>
+      <th>Cor</th>
+      <th>Ano de Fabricação</th>
+      <th>Placa</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let veiculo of veiculos; index as i">
+      <td>{{ veiculo.modelo }}</td>
+      <td>{{ veiculo.marca }}</td>
+      <td>{{ veiculo.cor }}</td>
+      <td>{{ veiculo.anoDeFabricacao }}</td>
+      <td>{{ veiculo.placa }}</td>
+      <td>{{ veiculo.reservado ? "Reservado" : "Disponível" }}</td>
+      <td class="actions">
+        <button
+          *ngIf="!veiculo.reservado"
+          type="button"
+          class="btn btn-reservar"
+        >
+          Reservar
+        </button>
+        <button
+          *ngIf="veiculo.reservado"
+          type="button"
+          class="btn btn-ver-reserva"
+        >
+          Ver Reserva
+        </button>
+        <button
+          type="button"
+          class="btn btn-editar"
+          (click)="mostrarModalAlterarVeiculo(veiculo)"
+        >
+          Editar
+        </button>
+        <button
+          type="button"
+          class="btn btn-excluir"
+          (click)="excluirVeiculo(veiculo.id)"
+        >
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
