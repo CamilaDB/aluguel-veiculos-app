@@ -4,6 +4,7 @@ import { VeiculoService } from './veiculoService';
 import { Veiculo } from './veiculo';
 import { CarregandoComponent } from '../carregando/carregando.component';
 import { ModalVeiculoComponent } from '../modal-veiculo/modal-veiculo.component';
+import { VeiculoStatus } from './veiculoStatusEnum';
 
 @Component({
   selector: 'app-home',
@@ -20,13 +21,16 @@ export class HomeComponent implements OnInit {
   carregando: boolean = false;
   modalVeiculo: boolean = false;
 
+  veiculoStatusEnumValues = Object.values(VeiculoStatus);
+  filtroReserva: boolean | null = null;
+
   ngOnInit(): void {
     this.listarVeiculos();
   }
 
   listarVeiculos(): void {
     this.carregando = true;
-    this.veiculoService.listarVeiculos().subscribe({
+    this.veiculoService.listarVeiculos(this.filtroReserva).subscribe({
       next: (resposta) => {
         this.veiculos = resposta;
         this.carregando = false;
@@ -37,6 +41,15 @@ export class HomeComponent implements OnInit {
         console.error(erro);
       },
     });
+  }
+
+  filtrarVeiculos(event: Event) {
+    const eventValue = (event.target as HTMLSelectElement).value;
+    if (eventValue == VeiculoStatus.Todos) this.filtroReserva = null;
+    else if (eventValue == VeiculoStatus.Reservado) this.filtroReserva = true;
+    else if (eventValue == VeiculoStatus.Disponivel) this.filtroReserva = false;
+    else this.filtroReserva = null;
+    this.listarVeiculos();
   }
 
   salvarVeiculo(veiculo: Veiculo) {
@@ -68,6 +81,42 @@ export class HomeComponent implements OnInit {
         this.carregando = false;
         this.fecharModalVeiculo();
         alert('Erro ao alterar veículo.');
+        console.error(erro);
+      },
+    });
+  }
+
+  reservarVeiculo(veiculo: Veiculo) {
+    this.carregando = true;
+    veiculo.reservado = true;
+    this.veiculoService.alterarVeiculo(veiculo).subscribe({
+      next: () => {
+        this.carregando = false;
+        this.listarVeiculos();
+        this.fecharModalVeiculo();
+      },
+      error: (erro) => {
+        this.carregando = false;
+        this.fecharModalVeiculo();
+        alert('Erro ao reservar veículo.');
+        console.error(erro);
+      },
+    });
+  }
+
+  removerReservaVeiculo(veiculo: Veiculo) {
+    this.carregando = true;
+    veiculo.reservado = false;
+    this.veiculoService.alterarVeiculo(veiculo).subscribe({
+      next: () => {
+        this.carregando = false;
+        this.listarVeiculos();
+        this.fecharModalVeiculo();
+      },
+      error: (erro) => {
+        this.carregando = false;
+        this.fecharModalVeiculo();
+        alert('Erro ao remover reservar veículo.');
         console.error(erro);
       },
     });

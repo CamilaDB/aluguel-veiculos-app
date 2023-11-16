@@ -11,8 +11,12 @@ export class VeiculoService {
 
   private url = 'http://localhost:8080/veiculos';
 
-  public listarVeiculos(): Observable<Veiculo[]> {
-    return this.http.get<any>(this.url);
+  public listarVeiculos(reservado: boolean | null): Observable<Veiculo[]> {
+    if (reservado === null) {
+      return this.http.get<any>(this.url);
+    } else {
+      return this.http.get<any>(`${this.url}?reservado=${reservado}`);
+    }
   }
 
   public criarVeiculo(veiculo: Veiculo): Observable<any> {

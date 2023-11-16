@@ -12,6 +12,13 @@
   Adicionar Veículo
 </button>
 
+<label class="filtro">Filtrar status:</label>
+<select (change)="filtrarVeiculos($event)">
+  <option *ngFor="let status of veiculoStatusEnumValues" [value]="status">
+    {{ status }}
+  </option>
+</select>
+
 <table>
   <thead>
     <tr>
@@ -37,6 +44,7 @@
           *ngIf="!veiculo.reservado"
           type="button"
           class="btn btn-reservar"
+          (click)="reservarVeiculo(veiculo)"
         >
           Reservar
         </button>
@@ -44,8 +52,9 @@
           *ngIf="veiculo.reservado"
           type="button"
           class="btn btn-ver-reserva"
+          (click)="removerReservaVeiculo(veiculo)"
         >
-          Ver Reserva
+          Remover Reserva
         </button>
         <button
           type="button"
