@@ -122,8 +122,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  excluirVeiculo(id: number | null): void {
+  excluirVeiculo(id: number | null, reservado: boolean | null): void {
     if (id) {
+      if (reservado) {
+        alert('Não é possível remover um veículo reservado');
+        return;
+      }
       this.carregando = true;
       this.veiculoService.apagarVeiculo(id).subscribe({
         next: () => {
