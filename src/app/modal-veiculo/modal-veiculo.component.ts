@@ -18,14 +18,44 @@ export class ModalVeiculoComponent {
   @Output() alterarVeiculoEvent = new EventEmitter<any>();
 
   fecharModal() {
+    this.veiculo = new Veiculo();
     this.fecharModalVeiculoEvent.emit();
   }
 
   salvarVeiculo() {
+    if (!this.validarFormulario()) {
+      alert('Por favor, preencha todos os campos corretamente.');
+      return;
+    }
+
     if (this.veiculo.id === null) {
       this.salvarVeiculoEvent.emit(this.veiculo);
     } else {
       this.alterarVeiculoEvent.emit(this.veiculo);
     }
+  }
+
+  validarFormulario(): boolean {
+    const anoAtual = new Date().getFullYear();
+    if (
+      this.veiculo.anoDeFabricacao &&
+      (this.veiculo.anoDeFabricacao < 1900 ||
+        this.veiculo.anoDeFabricacao > anoAtual)
+    ) {
+      return false;
+    }
+    if (
+      this.veiculo.placa &&
+      (this.veiculo.placa.length < 7 || this.veiculo.placa.length > 7)
+    ) {
+      return false;
+    }
+    return (
+      !!this.veiculo.modelo &&
+      !!this.veiculo.marca &&
+      !!this.veiculo.cor &&
+      !!this.veiculo.anoDeFabricacao &&
+      !!this.veiculo.placa
+    );
   }
 }

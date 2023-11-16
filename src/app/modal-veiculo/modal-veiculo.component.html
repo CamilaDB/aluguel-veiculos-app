@@ -7,12 +7,14 @@
       <button type="button" (click)="fecharModal()">X</button>
     </div>
 
-    <div class="modal-form">
+    <form class="modal-form" (ngSubmit)="salvarVeiculo()">
       <label>Modelo: </label>
       <input
         type="text"
         [(ngModel)]="veiculo.modelo"
         placeholder="Informe o modelo"
+        required
+        name="modelo"
       />
 
       <label>Marca: </label>
@@ -20,6 +22,8 @@
         type="text"
         [(ngModel)]="veiculo.marca"
         placeholder="Informe a marca"
+        required
+        name="marca"
       />
 
       <label>Cor: </label>
@@ -27,6 +31,8 @@
         type="text"
         [(ngModel)]="veiculo.cor"
         placeholder="Informe a cor"
+        required
+        name="cor"
       />
 
       <label>Ano de fabricação: </label>
@@ -34,6 +40,9 @@
         type="number"
         [(ngModel)]="veiculo.anoDeFabricacao"
         placeholder="Informe o ano de fabricação"
+        required
+        pattern="[0-9]{4}"
+        name="anoDeFabricacao"
       />
 
       <label>Placa: </label>
@@ -41,9 +50,11 @@
         type="text"
         [(ngModel)]="veiculo.placa"
         placeholder="Informe a placa"
+        required
+        name="placa"
       />
 
-      <button type="button" (click)="salvarVeiculo()">Salvar</button>
-    </div>
+      <button type="submit">Salvar</button>
+    </form>
   </div>
 </div>
